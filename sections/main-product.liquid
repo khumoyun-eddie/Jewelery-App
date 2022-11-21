@@ -1,4 +1,10 @@
 {{ 'style.main-product.css' | asset_url | stylesheet_tag }}
+<!-- Swiper JS -->
+{% if template == 'product' %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+{% endif %}
+
 {% assign details = product.metafields.accentuate.details %}
 {% assign shipping = product.metafields.accentuate.shipping %}
 <script>
@@ -41,12 +47,9 @@
               <select name="variants" id="variants" class="product-variants__list" required>
                 <option value="" disabled selected hidden>Select Size</option>
                 {% for variant in product.variants %}
-                  {% assign price = variant.price %}
+                  {% assign price = variant.price | divided_by: 100%}
                   {% assign quantity = variant.inventory_quantity %}
-                  <script>
-                    console.log({{variant | json}})
-                  </script>
-                  <option value="{{ variant.id }}" data-price="{{ price }}" data-id="{{ variant.id }}"
+                  <option value="{{ variant.id }}" data-id="{{ variant.id }}"
                     {% if variant == product.selected_or_first_available_variant %}
                     checked
                     {% endif %}
@@ -57,7 +60,7 @@
               </select>
 
             {% else %}
-              <span data-productid="{{ product.variants[0].id }}"></span>
+              <span data-productid="{{ product.variants[0].id }}" class="product-novariant"></span>
             {% endunless %}
 
           </div>
@@ -91,10 +94,6 @@
   </div>
 </div>
 
-<!-- Swiper JS -->
-{% if template == 'product' %}
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-{% endif %}
 
 <script>
   thumbs = new Swiper('.gallery-thumbs', { // spaceBetween: 10,
@@ -109,4 +108,29 @@
       swiper: thumbs
     }
   });
+
+  const priceTag = document.querySelector('.product-price');
+  const varinatsList = document.querySelector('.product-variants__list');
+  let variantId = "{{ product.id }}";
+  varinatsList.addEventListener('change', function(e) {
+    const target = e.target;
+    if (! target) {
+      return;
+    }
+    const productVariants = {{ product.variants | json }};
+    productVariants.forEach(variant => {
+      if (variant.id == e.target.value) {
+        priceTag.innerText = badgeContainer(variant.price);
+        variantId = variant.id;
+      }
+    })
+
+  });
+  const badgeContainer = (price) => {
+    const opt = {
+      style: 'currency',
+      currency: 'USD'
+    };
+    return new Intl.NumberFormat('en-US', opt).format(price / 100);
+  };
 </script>

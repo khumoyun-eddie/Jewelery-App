@@ -27,6 +27,7 @@
      font-size: 1.2rem;
      letter-spacing: .175em;
      color:var(--color-primary-1);
+     cursor: pointer;
  }
  .home .navigation__link{
      color: var(--color-primary-2);
@@ -34,6 +35,8 @@
  .navigation__user{
      justify-self: flex-end;
      display: flex;
+     list-style: none;
+     cursor: pointer;
  }
  .navigation__user>*:not(:first-child){
      margin-left: 1.7rem;

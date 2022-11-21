@@ -1,0 +1,60 @@
+{{ 'style.cart.css' | asset_url | stylesheet_tag }}
+
+<div id="cart-drawer" class="side-cart">
+  <div class="side-cart__header">
+    <h1 class="heading-text heading-1">Your Cart</h1>
+    <p class="side-cart__count"></p>
+    <span class="side-cart__close">
+      {% render 'icon-close' %}
+    </span>
+  </div>
+  <div class="side-cart__full">
+    <div class="side-cart__products-list"></div>
+
+    <div class="side-cart__footer">
+      <div class="side-cart__subtotal">
+        <h2 class="side-cart__subtotal-title heading-text heading-2">Subtotal</h2>
+        <p class="side-cart__total-price"></p>
+      </div>
+      <h5 class="side-cart__text heading-text heading-5">Shipping and taxes calculated next</h5>
+
+      <input type="submit" class="btn btn-primary side-cart__add-cart" name="checkout" value="Continue to Checkout">
+    </div>
+  </div>
+  <div class="side-cart__empty">
+    <h2 class="empty-title heading-text heading-2">Shop Our Best Diamonds</h2>
+    {%
+       render 'button-primary',
+       url: {{section.settings.link_best_sellers}}
+       , title: {{section.settings.btn_sellers}}
+       , btnType: 'light'
+    %}
+  </div>
+</div>
+<div class="overlay"></div>
+{% schema %}
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "text",
+        "id": "add_cart_title",
+        "label": "Cart Checkout Button Label",
+        "default": "Checkout"
+      }, {
+        "type": "url",
+        "id": "link_checkout",
+        "label": "Cart Link"
+      }, {
+        "type": "text",
+        "id": "btn_sellers",
+        "label": "Empty Cart Button Label",
+        "default": "Shop Best Sellers"
+      }, {
+        "type": "url",
+        "id": "link_best_sellers",
+        "label": "Best Sellers Link"
+      }
+    ]
+  }
+{% endschema %}

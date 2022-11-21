@@ -1,0 +1,53 @@
+{{ 'style.homepage-cta.css' | asset_url | stylesheet_tag }}
+
+<div class="homepage-cta">
+  <div class="container">
+    <div class="cta-wrapper">
+      <img src="{{'icon-lines.svg' | asset_url }}" class="cta-img" alt="">
+      <div class="cta-banner">
+        <img src="{{section.settings.cta_img.src | img_url:'565x'}}" alt="">
+      </div>
+      <div class="cta-content">
+        <h2 class="heading-text heading-2">{{section.settings.cta_title}}</h2>
+        <p class="cta-content__text">{{section.settings.cta_text}}</p>
+        {% render 'button-primary', title:{{section.settings.btn_title}}, url:{{section.settings.cta_url}} %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Homepage CTA",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "cta_img",
+        "label": "Banner Image"
+      },
+      {
+        "type": "text",
+        "id": "cta_title",
+        "label": "Cta Title",
+        "default": "Lorem ipsum dolor sit Amet."
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": " Cta text",
+        "default": "Convallis ac faucibus maecenas blandit elit. Placerat tellus fermentum in amet ac vitae, justo, pellentesque. Diam massa neque, blandit proin dapibus nec."
+      },
+      {
+        "type": "url",
+        "id": "cta_url",
+        "label": "Cta Url"
+      }, {
+        "type": "text",
+        "id": "btn_title",
+        "label": "Button Name",
+        "default": "Shop The Collection"
+      }
+
+    ]
+  }
+{% endschema %}

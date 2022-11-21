@@ -1,0 +1,49 @@
+{{ 'style.homepage-hero.css' | asset_url | stylesheet_tag }}
+
+<div class="homepage-hero">
+  <div class="homepage-hero__content">
+    <h1 class="heading-text heading-1 heading-1--light">{{ section.settings.hero_title }}</h1>
+    {%
+       render 'button-primary',
+       btnType: 'light'
+       , url: {{section.settings.hero_cta_url}}
+       , title: {{section.settings.hero_cta_label}}
+    %}
+  </div>
+  <div class="homepage-hero__footer">
+    {% render 'icon-arrowDown' %}
+  </div>
+</div>
+
+<style>
+  .homepage-hero {
+    background-image: url('{{ section.settings.hero_image.src | image_url: width: 1440, height:661 }}');
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Homepage Hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "hero_image",
+        "label": "Hero Image"
+      }, {
+        "type": "text",
+        "id": "hero_title",
+        "label": "Hero Title",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit Amet."
+      }, {
+        "type": "text",
+        "id": "hero_cta_label",
+        "label": "Hero Cta Label",
+        "default": "Shop Collection"
+      }, {
+        "type": "url",
+        "id": "hero_cta_url",
+        "label": "Hero Cta Url"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,33 @@
+.heading-text {
+  text-transform: uppercase;
+  font-family: var(--primary-font);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+.heading-1 {
+  font-size: 2.8rem;
+  text-transform: uppercase;
+  line-height: 40px;
+}
+.heading-1--light {
+  color: var(--color-primary-2);
+}
+.heading-2 {
+  font-size: 2rem;
+  letter-spacing: 0.18em;
+  line-height: 143%;
+}
+.heading-2--light {
+  color: var(--color-primary-2);
+}
+
+.heading-3{
+  font-size: 1.8rem;
+  line-height: 34px;
+}
+.heading-4{
+  font-size: 1.6rem;
+}
+.heading-5{
+  font-size: 1.4rem;
+}

@@ -1,0 +1,54 @@
+{
+  "current": {
+    
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo-light": "shopify:\/\/shop_images\/logo-white.png",
+          "logo-dark": "shopify:\/\/shop_images\/logo-black.png"
+        }
+      },
+      "announcement": {
+        "type": "announcement",
+        "blocks": {
+          "announcement-0": {
+            "type": "announcement",
+            "settings": {
+              "text": "Promo banner placeholder text",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "announcement-0"
+        ],
+        "settings": {
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/logo-black.png",
+          "address": "1234 Placeholder St. New York, NY",
+          "copyright": "2022 D.Gregory"
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  },
+  "presets": {
+    "Default": {
+    
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+          }
+        }
+      }
+    }
+  }
+}

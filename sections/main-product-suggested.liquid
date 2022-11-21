@@ -1,0 +1,18 @@
+{%- comment -%}
+  {% assign productsList = product.metafields.accentuate.suggested_products | split: '|' %}
+{%- endcomment -%}
+{{ 'style.products-suggested.css' | asset_url | stylesheet_tag }}
+
+<div class="products-suggested">
+  <div class="container">
+    <div class="products-suggested__content">
+
+      <h2 class="heading-text heading-2">You might also like</h2>
+      {% assign selected_handles = product.metafields.accentuate.suggested_products | split: '|' %}
+      {% for block in selected_handles %}
+        {% assign product = all_products[block] %}
+        {% render 'featured-product', item: product %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

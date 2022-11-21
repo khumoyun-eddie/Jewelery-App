@@ -1,0 +1,57 @@
+{
+  "sections": {
+    "collection": {
+      "type": "collection-plp",
+      "blocks": {
+        "63ba96d9-23d5-416a-9364-372f8c08f24a": {
+          "type": "breadcrumb",
+          "settings": {
+            "col_link": "https:\/\/jewelry-store-khumoyun.myshopify.com\/collections\/all",
+            "collection_title": "All"
+          }
+        },
+        "26b662b2-1fa7-4fee-960f-e5c2cf6e8af1": {
+          "type": "breadcrumb",
+          "settings": {
+            "col_link": "shopify:\/\/collections\/spring-collection",
+            "collection_title": "Spring"
+          }
+        },
+        "5244de16-1604-4c25-9da5-d0c9de1da797": {
+          "type": "breadcrumb",
+          "settings": {
+            "col_link": "shopify:\/\/collections\/summer-collection",
+            "collection_title": "Summer"
+          }
+        },
+        "c8e584be-7184-41ec-9762-9a7511f1f3d0": {
+          "type": "breadcrumb",
+          "settings": {
+            "col_link": "shopify:\/\/collections\/autumn-collection",
+            "collection_title": "Autumn"
+          }
+        },
+        "d8cadbff-ea3a-4498-9cf1-59cadb3a5b2d": {
+          "type": "breadcrumb",
+          "settings": {
+            "col_link": "shopify:\/\/collections\/winter-collection",
+            "collection_title": "Winter"
+          }
+        }
+      },
+      "block_order": [
+        "63ba96d9-23d5-416a-9364-372f8c08f24a",
+        "26b662b2-1fa7-4fee-960f-e5c2cf6e8af1",
+        "5244de16-1604-4c25-9da5-d0c9de1da797",
+        "c8e584be-7184-41ec-9762-9a7511f1f3d0",
+        "d8cadbff-ea3a-4498-9cf1-59cadb3a5b2d"
+      ],
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/old-background.png"
+      }
+    }
+  },
+  "order": [
+    "collection"
+  ]
+}

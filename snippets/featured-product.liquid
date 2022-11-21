@@ -1,0 +1,19 @@
+{{ 'style.featured-product.css' | asset_url | stylesheet_tag }}
+
+<div class="featured-item">
+  <div class="featured-item__header">
+    <img src="{{item.featured_image | img_url:'255x'}}" alt="">
+  </div>
+
+  <div class="featured-item__content">
+    <h4 class="heading-text heading-4">{{item.title}}</h4>
+    <p class="featured-item__price">{{item.price | money}}</p>
+    <p class="featured-type">New Collection</p>
+  </div>
+</div>
+
+<style>
+  .featured-item {
+    background-image: url('{{'dome.svg' | asset_url}}');
+  }
+</style>

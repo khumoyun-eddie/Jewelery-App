@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "product": {
+      "type": "main-product",
+      "settings": {
+      }
+    },
+    "product-banner": {
+      "type": "main-product-banner",
+      "settings": {
+        "banner_bg": "shopify:\/\/shop_images\/pdp-bg-image.png"
+      }
+    },
+    "product-suggested": {
+      "type": "main-product-suggested",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "product",
+    "product-banner",
+    "product-suggested"
+  ]
+}

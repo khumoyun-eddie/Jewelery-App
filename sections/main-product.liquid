@@ -1,0 +1,112 @@
+{{ 'style.main-product.css' | asset_url | stylesheet_tag }}
+{% assign details = product.metafields.accentuate.details %}
+{% assign shipping = product.metafields.accentuate.shipping %}
+<script>
+  console.log({{product | json}})
+</script>
+<div class="main-product">
+  <div class="container">
+    <div class="product-wrapper">
+      <div class="product-gallery">
+        <div class="swiper gallery-thumbs">
+          <div class="swiper-wrapper thumbs-wrapper">
+            {% for img in product.images %}
+              <div class="swiper-slide thumbs-item">
+                <img src="{{ img | img_url:'78x' }}" data-src="{{ image_url }}" data-aspectratio="{{ img.asperct_ratio }}" data-sizes="auto" loading="lazy" data-parent-fit="cover" alt="{{ img.alt | escape }}" loading="lazy" width height>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="swiper gallery">
+          <div class="swiper-wrapper gallery-wrapper">
+            {% for img in product.images %}
+              <div class="swiper-slide gallery-item">
+                <img src="{{ img | image_url: width: '640', height: '600' }}" data-src="{{ image_url }}" data-aspectratio="{{ img.asperct_ratio }}" data-sizes="auto" loading="lazy" data-parent-fit="cover" alt="{{ img.alt | escape }}" loading="lazy" width height>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="product-content">
+        <p class="product-type">{{product.type}}</p>
+        <h2 class="product-title">
+          {{ product.title }}
+        </h2>
+        <p class="product-price">
+          {{ product.price | money }}
+        </p>
+        <form data-novariant="{{ product.has_only_default_variant }}" data-selling_plan_id="{{product.selling_plan_groups.size}}" class="product-form">
+          <div class="product-variants">
+            {% unless product.variants[0].title == 'Default Title' %}
+              <select name="variants" id="variants" class="product-variants__list" required>
+                <option value="" disabled selected hidden>Select Size</option>
+                {% for variant in product.variants %}
+                  {% assign price = variant.price %}
+                  {% assign quantity = variant.inventory_quantity %}
+                  <script>
+                    console.log({{variant | json}})
+                  </script>
+                  <option value="{{ variant.id }}" data-price="{{ price }}" data-id="{{ variant.id }}"
+                    {% if variant == product.selected_or_first_available_variant %}
+                    checked
+                    {% endif %}
+                    {% if quantity <= 0 %}
+                    disabled
+                    {% endif %}>{{ variant.title }}</option>
+                {% endfor%}
+              </select>
+
+            {% else %}
+              <span data-productid="{{ product.variants[0].id }}"></span>
+            {% endunless %}
+
+          </div>
+          <button type="submit" class="btn btn-primary product-btn">Add to Cart</button>
+        </form>
+        <div class="product-description">
+          <h5 class="heading-text heading-5">
+            description
+          </h5>
+          <p>{{product.description}}</p>
+        </div>
+        <div class="product-details">
+          <h5 class="heading-text heading-5">Details</h5>
+          {% for item in (1..details.size) %}
+            {% if details[forloop.index0] != blank %}
+              {{ details[forloop.index0] }}
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="product-shipping">
+          <h5 class="heading-text heading-5">shipping</h5>
+          {% for item in (1..shipping.size) %}
+            {% if shipping[forloop.index0] != blank %}
+              {{ shipping[forloop.index0] }}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Swiper JS -->
+{% if template == 'product' %}
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+{% endif %}
+
+<script>
+  thumbs = new Swiper('.gallery-thumbs', { // spaceBetween: 10,
+    slidesPerView: 3,
+    freeMode: true,
+    watchSlidesProgress: true
+  });
+
+  swiper = new Swiper('.gallery ', {
+    direction: 'vertical',
+    thumbs: {
+      swiper: thumbs
+    }
+  });
+</script>

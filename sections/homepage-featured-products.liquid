@@ -1,0 +1,51 @@
+{{ 'style.homepage-featured.css' | asset_url | stylesheet_tag }}
+{{ 'style.featured-product.css' | asset_url | stylesheet_tag }}
+
+<div class="homepage-featured">
+  <div class="container">
+    <div class="featured-list">
+      {% for product in section.settings.products_list %}
+      
+        {% render 'featured-product', item:{{product}} %}
+      {%endfor%}
+      <h2 class="heading-text heading-2 featured-title">{{section.settings.title}}</h2>
+    </div>
+  </div>
+  {% render 'button-primary',title:{{section.settings.btn_title}}, url:{{section.settings.btn_url}} %}
+  <img src="{{section.settings.bg_image.src | img_url:'1440x'}}" alt="" class="featured-bg_image">
+
+</div>
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "product_list",
+        "id": "products_list",
+        "label": "Products"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "jewelry that not only entices the eye but enchants the soul"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Header Image"
+      },
+      {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Button Link"
+      }, {
+        "type": "text",
+        "id": "btn_title",
+        "label": "Button Title",
+        "default": "Shop All"
+      }
+    ]
+  }
+{%endschema%}

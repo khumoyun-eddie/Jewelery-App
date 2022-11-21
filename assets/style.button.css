@@ -1,0 +1,28 @@
+.btn {
+  padding: 1rem 6rem;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: var(--primary-font);
+  line-height: 20px;
+  letter-spacing: 0.15em;
+  color: var(--color-primary-1);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--color-primary-1);
+  color: var(--color-primary-2);
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+}
+.btn-primary--light {
+  color: var(--color-primary-1);
+  background-color: var(--color-primary-2);
+
+}

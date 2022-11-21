@@ -1,0 +1,49 @@
+.homepage-cta{
+    height: 68rem;
+    width: 100%;
+    padding: 6rem 6.5rem;
+    display: flex;
+    align-items: center;
+}
+.cta-wrapper{
+    width: 114rem;
+    height: 49.1rem;
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+}
+.cta-img{
+    position: absolute;
+    top: -3.7rem;
+    left: -8.5rem;  
+}
+.cta-banner{
+    width: 50%;
+    height: 100%;
+}
+.cta-content{
+    width: 50%;
+    background-color: var(--color-secondary-1);
+    border: 1px solid var(--color-primary-1);
+    border-left:none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 14rem 7rem;
+
+}
+.cta-banner img{
+    width: 100%;
+}
+.cta-content__text{
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-family: var(--secondary-font);
+    line-height: 24px;
+    letter-spacing: 0.01em;
+
+}

@@ -1,0 +1,128 @@
+.main-product {
+  width: 100%;
+  height: fit-content;
+  padding: 9rem 15rem 6rem 3.2rem;
+}
+.product-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 4rem;
+  align-items: flex-start;
+  padding-top: 7.2rem;
+}
+
+.product-gallery {
+  grid-column: 1/2;
+  width: 100%;
+  height: 60rem;
+  display: flex;
+  padding-left: 2rem;
+  clip-path: polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%);
+  background-color: var(--color-primary-2);
+}
+.product-content {
+  grid-column: 2/3;
+}
+.gallery {
+  height: 100%;
+  width: 100%;
+  max-height: 60rem;
+}
+.gallery-thumbs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 7.8rem;
+}
+.thumbs-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 7.8rem !important;
+  height: 50%;
+}
+.thumbs-item {
+  cursor: pointer;
+  width: 7.8rem !important;
+  height: 7.8rem;
+  position: relative;
+}
+
+.thumbs-item img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0%;
+  border: 1px solid #cacaca;
+}
+
+.gallery-wrapper {
+  height: 100%;
+}
+
+.gallery-item {
+  height: 100%;
+  overflow: hidden;
+}
+.gallery-item img {
+  max-width: 64rem;
+  max-height: 60rem;
+}
+
+.product-type {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 20px;
+  color: var(--color-secondary-3);
+}
+.product-title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 4rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.product-price {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 36px;
+}
+.product-form {
+  margin-bottom: 4rem;
+}
+.product-variants__list {
+  width: 31.4rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.4rem;
+  line-height: 20px;
+  margin-bottom: 2rem;
+}
+.product-description{
+    margin-bottom: 3rem;
+}
+.product-description p{
+    margin-top: 1rem;
+    font-family: var(--secondary-font);
+    font-size: 1.6rem;
+line-height: 19px;
+letter-spacing: 0.02em;
+}
+
+.product-details, .product-shipping{
+    margin-bottom: 3rem;
+}
+.product-details ul, .product-shipping ul{
+    margin-top: 1rem;
+    font-family: var(--secondary-font);
+    font-size: 1.6rem;
+line-height: 19px;
+letter-spacing: 0.02em;
+}
+.product-details li:not(:first-of-type), .product-shipping li:not(:first-of-type){
+    margin-top: .8rem;
+}

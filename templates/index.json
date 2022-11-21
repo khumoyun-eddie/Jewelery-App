@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "homepage-hero": {
+      "type": "homepage-hero",
+      "settings": {
+        "hero_image": "shopify:\/\/shop_images\/hero-image.png",
+        "hero_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit Amet.",
+        "hero_cta_label": "Shop Collection",
+        "hero_cta_url": ""
+      }
+    },
+    "homepage-featured": {
+      "type": "homepage-featured-products",
+      "settings": {
+        "products_list": [
+          "button-ruby",
+          "alla",
+          "ophelia",
+          "medici"
+        ],
+        "title": "jewelry that not only entices the eye but enchants the soul",
+        "bg_image": "shopify:\/\/shop_images\/old-background.png"
+      }
+    },
+    "homepage-cta": {
+      "type": "homepage-cta",
+      "settings": {
+        "cta_img": "shopify:\/\/shop_images\/cta-banner.png",
+        "cta_title": "Lorem ipsum dolor sit Amet.",
+        "cta_text": "Convallis ac faucibus maecenas blandit elit. Placerat tellus fermentum in amet ac vitae, justo, pellentesque. Diam massa neque, blandit proin dapibus nec.",
+        "cta_url": "",
+        "btn_title": "Shop The Collection"
+      }
+    },
+    "homepage-contact": {
+      "type": "homepage-contact",
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/signup-background.png",
+        "title": "Lorem ipsum dolor sit amet consectetur adipiscing.",
+        "cta_label": "Sign Up",
+        "cta_url": ""
+      }
+    }
+  },
+  "order": [
+    "homepage-hero",
+    "homepage-featured",
+    "homepage-cta",
+    "homepage-contact"
+  ]
+}

@@ -1,0 +1,15 @@
+.announcement-bar {
+  width: 100%;
+  background-color: var(--color-primary-1);
+  text-align: center;
+  padding: 1rem;
+}
+.announcement {
+  color: var(--color-secondary-2);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  font-family: var(--secondary-font);
+}

@@ -1,0 +1,49 @@
+{{ 'style.homepage-contact.css' | asset_url | stylesheet_tag }}
+
+<div class="homepage-contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-content">
+        <h3 class="heading-text heading-3">{{section.settings.title}}</h3>
+      </div>
+      <div class="contact-footer">
+      {% render 'button-primary', url: {{section.settings.cta_url}}
+       , title: {{section.settings.cta_label}}, btnType:'dark'%}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .homepage-contact {
+    background-image: url('{{ section.settings.bg_image.src | image_url: width: 1440, height:661 }}');
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Homepage Contact",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background Image"
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Lorem ipsum dolor sit amet consectetur adipiscing."
+      }, {
+        "type": "text",
+        "id": "cta_label",
+        "label": "Contact Button",
+        "default": "Sign Up"
+      }, {
+        "type": "url",
+        "id": "cta_url",
+        "label": "Button Link"
+      }
+    ]
+  }
+{%endschema%}

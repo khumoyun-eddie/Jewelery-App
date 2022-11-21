@@ -1,0 +1,35 @@
+.homepage-featured .container {
+  padding: 6rem 15rem;
+}
+.homepage-featured {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.featured-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  column-gap: 4rem;
+  row-gap: 5.8rem;
+}
+.featured-title {
+  grid-column: 2 / span 2;
+  grid-row: 1/2;
+  text-align: center;
+}
+.featured-bg_image {
+  width: 100%;
+  margin-top: 6rem;
+}
+
+
+.homepage-featured .featured-item:nth-of-type(2),
+.homepage-featured .featured-item:nth-of-type(3) {
+  grid-row: 2/5;
+}
+.homepage-featured .featured-item:first-of-type,
+.homepage-featured .featured-item:last-of-type {
+  grid-row: 1/4;
+}
+

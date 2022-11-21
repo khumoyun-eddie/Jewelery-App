@@ -1,0 +1,59 @@
+{{ 'style.footer.css' | asset_url | stylesheet_tag }}
+<div class="footer">
+  <div class="container">
+    <div class="footer__content">
+      <ul class="footer__list">
+        {% for link in linklists['footer-menu-1'].links %}
+          <li class="footer__item">
+            <a href="{{ link.url }}" aria-label="Link" class="footer__link">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="footer__policies">
+        <div class="footer__logo-box">
+          <img src="{{ section.settings.logo.src | image_url: width: 190 }}" alt="{{ section.settings.logo.alt }}" class="footer__logo" loading="lazy" width height>
+        </div>
+        <div class="footer__credits">
+          <p>{{section.settings.address}}</p>
+          <p>Privacy Policy</p>
+          <p>&copy;{{section.settings.copyright}}</p>
+        </div>
+      </div>
+      <ul class="footer__list">
+        {% for link in linklists['footer-menu-2'].links %}
+          <li class="footer__item">
+            <a href="{{ link.url }}" aria-label="Link" class="footer__link">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+        <li class="footer__item">
+          <a href="" class="footer__link">
+            {% render 'icon-instagram' %}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      }, {
+        "type": "text",
+        "id": "address",
+        "default": "1234 Placeholder St. New York, NY",
+        "label": "Address"
+      }, {
+        "type": "text",
+        "id": "copyright",
+        "default": "2022 D.Gregory",
+        "label": "Copyright"
+      }
+    ]
+  }
+{% endschema %}

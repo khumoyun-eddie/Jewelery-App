@@ -1,0 +1,47 @@
+{{ 'style.header.css' | asset_url | stylesheet_tag }}
+
+<header class="header">
+  <nav class="navigation">
+    <div class="container">
+      {% # theme-check-disable %}
+
+      {% # theme-check-enable %}
+      <ul class="navigation__list">
+        {% for link in linklists['navbar-menu'].links %}
+          <li class="navigation__item">
+            <a class="navigation__link" aria-label="Link" href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      {% if template == 'index' %}
+        <img class="navigation__logo" src="{{section.settings.logo-light.src | img_url: '144x'}}" alt="{{section.settings.logo-light.alt}}" width height>
+      {% else %}
+        <img class="navigation__logo" src="{{section.settings.logo-dark.src | img_url: '144x'}}" alt="{{section.settings.logo-dark.alt}}" width height>
+      {% endif %}
+      <div class="navigation__user">
+        {% for link in linklists['navbar-menu-2'].links %}
+          <li class="navigation__item">
+            <a class="navigation__link" aria-label="Link" href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+</header>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo-light",
+        "label": "Logo Light"
+      }, {
+        "type": "image_picker",
+        "id": "logo-dark",
+        "label": "Logo Dark"
+      }
+    ]
+  }
+{% endschema %}

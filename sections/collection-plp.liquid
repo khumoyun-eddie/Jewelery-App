@@ -1,0 +1,255 @@
+{{ 'style.collection-plp.css' | asset_url | stylesheet_tag }}
+{% assign banner_markup = collection.metafields.accentuate.banner_content %}
+{% assign banner_image = collection.metafields.accentuate.banner_img %}
+<div class="products-list__header">
+  <img src="{{section.settings.bg_image.src | img_url:'1440x'}}" alt="" class="products-list__header-image">
+  <form class="filter-form">
+    {%- for filter in collection.filters -%}
+      <ul class="filter-group-display products-list__nav">
+        <li class="filter-group-display__list-item products-list__nav-item {% if filter.active_values == blank -%}active{%- endif %} ">
+          <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset products-list__nav-link ">All</a>
+        </li>
+        {%- for filter_value in filter.values -%}
+          <li onclick="this.form.submit()" class="filter-group-display__list-item products-list__nav-item {% if filter_value.active -%}active{%- endif %}">
+            <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}" class="products-list__nav-link ">
+              <input onclick="this.form.submit()" hidden type="checkbox" name="{{ filter_value.param_name }}" value="{{ filter_value.value }}" id="Filter-{{ filter.param_name }}-{{ forloop.index }}" {% if filter_value.active -%}checked{%- endif %} {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}>{{ filter_value.label }}</label>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endfor -%}
+  </form>
+</div>
+<div class="products-list__wrapper">
+  <div class="container">
+    <div class="products-list__sort-box">
+      <div class="sort-box">
+        <label for="sort-by">
+          Sort By
+        </label>
+
+        <select id="sort-by">
+          {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+          {% for option in collection.sort_options %}
+            {% unless option.value contains 'created-ascending' or option.value contains 'created-descending' or option.value contains 'manual' %}
+              <option value="{{ option.value }}" {% if sort_by == option.value %} selected="selected"{% endif %}>{{ option.name }}</option>
+            {% endunless %}
+          {% endfor %}
+        </select>
+      </div>
+      <div class="sort-box">
+        <label for="sort-collections">Collections:</label>
+        <select name="collections" id="sort-collections">
+          <option value="" disabled selected hidden>Collections</option>
+          {% for block in section.blocks %}
+            {% assign item = block.settings %}
+            <option value="{{ item.collection_title | downcase}}-collection">
+              {{ item.collection_title | upcase }}
+            </option>
+          {% endfor %}
+
+        </select>
+      </div>
+    </div>
+    <div class="products-list">
+      {% for item in (1..banner_markup.size) %}
+        <div class="product-banner">
+          <div class="product-banner__img-box">
+            {% if banner_image[forloop.index0] != blank %}
+              <img class="product-banner__img" src="{{ banner_image[forloop.index0][0].src }}" width height loading="lazy" alt="" loading="lazy">
+            {% endif %}
+          </div>
+          <div class="product-banner__content">
+            {% if banner_markup[forloop.index0] != blank %}
+              {{ banner_markup[forloop.index0] }}
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+      {% paginate collection.products by 5 %}
+        {% for item in collection.products %}
+          <div class="products-list__item">
+            <a href="{{item.url}}">
+
+              <div class="item-header">
+                <img src="{{ item.images[0] | image_url: width: 353 }}" loading="lazy" alt="" data-aspectratio="{{ item.aspect_ratio }}" data-sizes="auto" data-parent-fit="cover" alt="{{ product.featured_image.alt | escape }}" class="item-img">
+              </div>
+              <div class="item-content">
+                <h4 class="heading-text heading-4">{{item.title | upcase }}</h4>
+                <p class="item-price">{{item.price | money}}</p>
+                <p class="item-type">New Collection</p>
+              </div>
+            </a>
+          </div>
+        {% endfor%}
+        <div class="pagination">
+          <div class="container">
+            <div class="pagination__content">
+              <a href="{{paginate.previous.url}}" class="pagination__link {% if paginate.previous.url %}pagination-active{% endif %}">Previous</a>
+              <div class="pagination__list">
+                {% if paginate.pages > 1 -%}
+                  {% for part in paginate.parts -%}
+                    {% if part.is_link -%}
+                      {{ part.title | link_to: part.url}}
+                    {%- else -%}
+                      <span>{{ part.title }}</span>
+                    {% endif %}
+                  {%- endfor %}
+                {%- else -%}
+                  <span class="pagination__btn">{{paginate.current_page}}</span>
+                {% endif %}
+              </div>
+
+              <a href="{{paginate.next.url}}" class="pagination__link {% if paginate.next.url %}pagination-active{% endif %}">Next</a>
+            </div>
+          </div>
+        </div>
+        <script>
+          console.log({{paginate.part.title | json}})
+        </script>
+
+      {% endpaginate %}
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .product-banner:first-child {
+    grid-column: {{ section.settings.banner_1_col}}/ span 2;
+    grid-row: {{ section.settings.banner_1_row}}/ span 1;
+  }
+  .product-banner:nth-child(2) {
+    grid-column: {{ section.settings.banner_2_col}}/ span 2;
+    grid-row: {{ section.settings.banner_2_row}}/ span 1;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Products List Page",
+    "blocks": [
+      {
+        "type": "breadcrumb",
+        "name": "Breadcrumb",
+        "settings": [
+          {
+            "type": "url",
+            "id": "col_link",
+            "label": "Collection Link",
+            "info": "Navigation link to the Collection"
+          }, {
+            "type": "text",
+            "id": "collection_title",
+            "label": "Collection Name"
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Header Image"
+      },
+      {
+        "type": "select",
+        "id": "banner_1_col",
+        "label": "Banner-1 Column",
+        "options": [
+          {
+            "value": "1",
+            "label": "1st column"
+          }, {
+            "value": "2",
+            "label": "2nd column"
+          }
+        ],
+        "default": "2"
+      },
+      {
+        "type": "select",
+        "id": "banner_1_row",
+        "label": "Banner-1 Row",
+        "options": [
+          {
+            "value": "1",
+            "label": "1st row"
+          }, {
+            "value": "2",
+            "label": "2nd row"
+          }, {
+            "value": "3",
+            "label": "3rd row"
+          }
+        ],
+        "default": "1"
+      },
+      {
+        "type": "select",
+        "id": "banner_2_col",
+        "label": "Banner-2 Column",
+        "options": [
+          {
+            "value": "1",
+            "label": "1st column"
+          }, {
+            "value": "2",
+            "label": "2nd column"
+          }
+        ],
+        "default": "1"
+      }, {
+        "type": "select",
+        "id": "banner_2_row",
+        "label": "Banner-2 Row",
+        "options": [
+          {
+            "value": "2",
+            "label": "2nd row"
+          }, {
+            "value": "3",
+            "label": "3rd row"
+          }, {
+            "value": "4",
+            "label": "4th row"
+          }
+        ],
+        "default": "3"
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+  Shopify.queryParams = {};
+
+/*
+// Preserve existing query parameters*/
+  if (location.search.length) {
+    const params = location.search.substr(1).split('&');
+    for (let i = 0; i < params.length; i++) {
+      const keyValue = params[i].split('=');
+      if (keyValue.length) {
+        Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+      }
+    }
+  }
+
+// Update sort_by query parameter on select change
+  document.querySelector('#sort-by').addEventListener('change', function(e) {
+    const value = e.target.value;
+
+    Shopify.queryParams.sort_by = value;
+    location.search = new URLSearchParams(Shopify.queryParams).toString();
+  });
+
+  document.querySelector('#sort-collections').addEventListener('change', function(e) {
+    const value = e.target.value;
+    if (value === 'all-collection') {
+      location.assign('all')
+    } else {
+      location.assign(value)
+    }
+
+  });
+</script>

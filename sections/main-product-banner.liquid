@@ -1,0 +1,52 @@
+{% assign banner_markup = product.metafields.accentuate.banner_markup %}
+{% assign banner_image = product.metafields.accentuate.banner_media %}
+{{ 'style.product-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="product-banner">
+  <div class="container">
+    {% for item in (1..banner_markup.size) %}
+      <div class="product-banner__wrapper">
+        <div class="product-banner__image">
+          {% if banner_image[forloop.index0] != blank %}
+            <img src="{{ banner_image[forloop.index0][0].src }}" width height loading="lazy" alt="" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="product-banner__content">
+          {% if banner_markup[forloop.index0] != blank %}
+            {{ banner_markup[forloop.index0] }}
+          {% endif %}
+          {%- comment -%}
+            <img src="{{section.settings.signature.src | img_url}}" class="signature" alt="">
+          {%- endcomment -%}
+        </div>
+
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .product-banner {
+    background-image: url('{{ section.settings.banner_bg.src | image_url: width: 1440, height:691 }}');
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Product Banner",
+
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "banner_bg",
+        "label": "Banner Background Image"
+
+      }, {
+        "type": "image_picker",
+        "id": "signature",
+        "label": "Banner Signature"
+
+      }
+    ]
+  }
+{% endschema %}

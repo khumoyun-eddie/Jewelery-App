@@ -1,0 +1,17 @@
+.products-suggested{
+    width: 100%; 
+    padding: 6rem 0 8rem 0;
+}
+.products-suggested__content{
+    width: 100%;
+    display: flex;
+    flex-wrap:wrap;
+    column-gap: 4rem;
+    justify-content: center;
+    text-align: center;
+}
+.products-suggested__content h2{
+    width: 100%;
+    margin-bottom: 4.4rem;
+}
+

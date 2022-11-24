@@ -71,7 +71,7 @@
             <a href="{{item.url}}">
 
               <div class="item-header">
-                <img src="{{ item.images[0] | image_url: width: 353 }}" loading="lazy" alt="" data-aspectratio="{{ item.aspect_ratio }}" data-sizes="auto" data-parent-fit="cover" alt="{{ product.featured_image.alt | escape }}" class="item-img">
+                <img src="{{ item.images[0] | image_url: width: 353 }}" loading="lazy" alt="{{item.images[0].alt}}" data-aspectratio="{{ item.aspect_ratio }}" data-sizes="auto" data-parent-fit="cover" alt="{{ product.featured_image.alt | escape }}" class="item-img">
               </div>
               <div class="item-content">
                 <h4 class="heading-text heading-4">{{item.title | upcase }}</h4>

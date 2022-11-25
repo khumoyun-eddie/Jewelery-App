@@ -41,7 +41,7 @@
         <p class="product-price">
           {{ product.price | money }}
         </p>
-     
+           <div class="swym-wishlist-button-bar"></div>
         <form data-novariant="{{ product.has_only_default_variant }}" data-selling_plan_id="{{product.selling_plan_groups.size}}" class="product-form">
           <div class="product-variants">
             {% unless product.variants[0].title == 'Default Title' %}
@@ -67,7 +67,6 @@
           </div>
           <button type="submit" class="btn btn-primary product-btn">Add to Cart</button>
         </form>
-          <div class="swym-wishlist-button-bar"></div>
         <div class="product-description">
           <h5 class="heading-text heading-5">
             description

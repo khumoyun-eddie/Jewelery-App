@@ -1,10 +1,12 @@
 {
-    "sections": {
-      "web-component":{
-        "type":"featured-product-card"
+  "sections": {
+    "web-component": {
+      "type": "featured-product-card",
+      "settings": {
       }
-    },
-    "order": [
-      "web-component"
-    ]
-  }
+    }
+  },
+  "order": [
+    "web-component"
+  ]
+}

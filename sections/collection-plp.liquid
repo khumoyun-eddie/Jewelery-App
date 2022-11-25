@@ -1,6 +1,8 @@
 {{ 'style.collection-plp.css' | asset_url | stylesheet_tag }}
 {% assign banner_markup = collection.metafields.accentuate.banner_content %}
 {% assign banner_image = collection.metafields.accentuate.banner_img %}
+<script src="{{ 'featured-products.js' | asset_url }}" defer></script>
+
 <div class="products-list__header">
   <img src="{{section.settings.bg_image.src | img_url:'1440x'}}" alt="" class="products-list__header-image">
   <form class="filter-form">
@@ -66,21 +68,29 @@
         </div>
       {% endfor %}
       {% paginate collection.products by 5 %}
+
         {% for item in collection.products %}
-          <div class="products-list__item">
+          {%- comment -%}
+            <div class="products-list__item">
             <a href="{{item.url}}">
 
-              <div class="item-header">
-                <img src="{{ item.images[0] | image_url: width: 353 }}" loading="lazy" alt="{{item.images[0].alt}}" data-aspectratio="{{ item.aspect_ratio }}" data-sizes="auto" data-parent-fit="cover" alt="{{ product.featured_image.alt | escape }}" class="item-img">
-              </div>
-              <div class="item-content">
-                <h4 class="heading-text heading-4">{{item.title | upcase }}</h4>
-                <p class="item-price">{{item.price | money}}</p>
-                <p class="item-type">New Collection</p>
-              </div>
+            <div class="item-header">
+            <img src="{{ item.images[0] | image_url: width: 353 }}" loading="lazy" alt="{{item.images[0].alt}}" data-aspectratio="{{ item.aspect_ratio }}" data-sizes="auto" data-parent-fit="cover" alt="{{ product.featured_image.alt | escape }}" class="item-img">
+            </div>
+            <div class="item-content">
+            <h4 class="heading-text heading-4">{{item.title | upcase }}</h4>
+            <p class="item-price">{{item.price | money}}</p>
+            <p class="item-type">New Collection</p>
+            </div>
             </a>
-          </div>
+            </div>
+          {%- endcomment -%}
+          <featured-product url="{{item.url}}" image="{{ item.images[0] | image_url: width: 353 }}" >
+            <div slot="title">{{item.title | upcase}}</div>
+            <div slot="price">{{item.price | money}}</div>
+          </featured-product>
         {% endfor%}
+
         <div class="pagination">
           <div class="container">
             <div class="pagination__content">
@@ -103,10 +113,6 @@
             </div>
           </div>
         </div>
-        <script>
-          console.log({{paginate.part.title | json}})
-        </script>
-
       {% endpaginate %}
     </div>
 

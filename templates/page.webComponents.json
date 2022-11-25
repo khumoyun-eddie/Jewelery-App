@@ -1,0 +1,10 @@
+{
+    "sections": {
+      "web-component":{
+        "type":"featured-product-card"
+      }
+    },
+    "order": [
+      "web-component"
+    ]
+  }
